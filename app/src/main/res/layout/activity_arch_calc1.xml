@@ -1,0 +1,995 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:clickable="false"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="100"
+
+    tools:context=".ArchCalc1"><![CDATA[    ;
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+]]>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0sp"
+        android:layout_weight="85"
+        android:orientation="vertical"
+        android:id="@+id/TopLayout"
+        android:visibility="gone">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:text="Back"
+            android:id="@+id/BackBtn"
+            android:layout_gravity="top|right"
+            android:background="@drawable/button"
+            android:layout_marginTop="20sp"
+            android:layout_marginRight="20sp"
+            android:textSize="22sp"
+            android:textColor="#ffffffff"
+            android:onClick="ShowHistory" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:textSize="22sp"
+            android:paddingLeft="20sp"
+            android:textColor="#ffffffff"
+            android:id="@+id/StepText"
+            android:textAlignment="textEnd" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0sp"
+        android:layout_weight="25"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:id="@+id/NumberLines">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0sp"
+            android:layout_weight="15"
+            android:orientation="vertical"
+            android:id="@+id/FinalLine">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <Spinner
+                    android:id="@+id/TotalSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignLeft="@+id/FinalSign"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignRight="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginTop="5sp"
+                    android:alpha="0"
+                    android:background="#66000000"
+                    android:dropDownWidth="70sp"
+                    android:prompt="@string/app_name"
+                    android:spinnerMode="dropdown"
+                    android:textColor="#ff00ffff" />
+                // Total Spinner
+
+
+                <ImageView
+                    android:id="@+id/FinalBar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10sp"
+                    android:background="#88000000"
+                    android:minHeight="50sp"
+                    android:layout_marginBottom="10sp" />
+                //Final Bar
+
+
+                <!--
+            This section has the total value
+            -->
+                <TextView
+                    android:id="@+id/FinalSign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:gravity="center_vertical"
+                    android:text="-"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp"
+                    android:layout_marginLeft="20sp" />
+                //Final Sign
+
+                <TextView
+                    android:id="@+id/FinalInchLabel"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_toRightOf="@+id/FinalFracValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="&quot;"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp" />
+                //Final Inch Label
+
+                <TextView
+                    android:id="@+id/FinalFracValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_toRightOf="@+id/FinalInchValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="7sp"
+                    android:text="1/8"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp"
+                    android:layout_alignParentEnd="false" />
+                //Final Frac Value
+
+                <TextView
+                    android:id="@+id/FinalInchValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_toRightOf="@+id/FinalFeetLabel"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp" />
+                //Final Inch Value
+
+                <TextView
+                    android:id="@+id/FinalFeetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_toRightOf="@+id/FinalFeetValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="&apos;"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp" />
+                //Final Feet Label
+
+                <TextView
+                    android:id="@+id/FinalFeetValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_toRightOf="@+id/FinalSign"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp" />
+                //Final Feet Value
+
+                <TextView
+                    android:id="@+id/InchSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/FinalBar"
+                    android:layout_alignTop="@+id/FinalBar"
+                    android:layout_marginLeft="15sp"
+                    android:layout_toRightOf="@+id/FinalInchLabel"
+                    android:gravity="center_vertical"
+                    android:text="(0)"
+                    android:textColor="#ffffffff"
+                    android:textSize="26sp" />
+                //Inch Summary
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0sp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:id="@+id/TempLine">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <Spinner
+                    android:id="@+id/TempSpinner"
+                    android:layout_width="100sp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignLeft="@+id/TempSign"
+                    android:layout_alignRight="@+id/TempBar"
+                    android:layout_alignTop="@+id/TempBar"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginTop="5sp"
+                    android:alpha="0"
+                    android:background="#66000000"
+                    android:dropDownWidth="70sp"
+                    android:prompt="@string/app_name"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="#ffbbbbbb"
+                    android:textAlignment="center"
+                    android:textColor="#ff00ffff" />
+                //Temporary Spinner
+
+                <Button
+                    android:id="@+id/TempReset"
+                    android:layout_width="100sp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_alignBottom="@+id/TempSpinner"
+                    android:layout_alignRight="@+id/TempSpinner"
+                    android:layout_alignTop="@+id/TempSpinner"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button"
+                    android:onClick="ResetTemp"
+                    android:text="Clear"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp"
+                    android:singleLine="false" />
+                // Temporary Reset
+
+                <ImageView
+                    android:id="@+id/TempBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentTop="false"
+                    android:background="#44000000"
+                    android:minHeight="50sp"
+                    android:layout_marginBottom="5sp" />
+                //Temp Bar
+
+
+                <!-- temp stuff -->
+
+                <TextView
+                    android:id="@+id/TempSign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignTop="@+id/TempBar"
+                    android:layout_marginLeft="20sp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Temp Sign
+
+                <TextView
+                    android:id="@+id/FeetValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignTop="@+id/TempBar"
+                    android:layout_toEndOf="@id/TempSign"
+                    android:layout_toRightOf="@+id/TempSign"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Feet Value
+
+                <TextView
+                    android:id="@+id/FeetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignTop="@+id/FeetValue"
+                    android:layout_toEndOf="@id/FeetValue"
+                    android:layout_toRightOf="@+id/FeetValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="&apos;"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Feet Label
+
+                <TextView
+                    android:id="@+id/InchValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignTop="@+id/FeetValue"
+                    android:layout_toEndOf="@id/FeetLabel"
+                    android:layout_toRightOf="@+id/FeetValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:paddingRight="7sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Inch Value
+
+                <TextView
+                    android:id="@+id/FracValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignTop="@+id/FeetValue"
+                    android:layout_toEndOf="@id/InchValue"
+                    android:layout_toRightOf="@+id/InchValue"
+                    android:gravity="center_vertical"
+                    android:text="1/8"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Frac Value
+
+                <TextView
+                    android:id="@+id/InchLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TempBar"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignTop="@+id/FeetValue"
+                    android:layout_toEndOf="@id/FracValue"
+                    android:layout_toRightOf="@+id/FracValue"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5sp"
+                    android:text="&quot;"
+                    android:textColor="#ffffffff"
+                    android:textSize="22sp" />
+                //Inch Label
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>//top bars
+
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="0sp"
+android:layout_weight="75"
+android:orientation="vertical"
+    android:id="@+id/BottomHalf">
+
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="50"
+        android:orientation="vertical"
+        android:id="@+id/FeetInchColumn">//container for feet and inches panels
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10sp"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:id="@+id/FeetPanel">// This is the feet panel
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/FeetRow1">// first row of feet buttons
+
+                <Button
+                    android:id="@+id/F1"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="1"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F2"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="2"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F3"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="3"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/FeetRow2">// second row of feet buttons
+
+                <Button
+                    android:id="@+id/F4"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="4"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F5"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="5"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F6"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="6"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/FeetRow3">// third row of feet buttons
+
+                <Button
+                    android:id="@+id/F7"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="7"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F8"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="8"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/F9"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="9"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/FeetRow4">// fourth row of feet buttons
+
+                <Button
+                    android:id="@+id/F0"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedFeet"
+                    android:padding="0sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/FeetText"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:background="#00000000"
+                    android:padding="0sp"
+                    android:text="Feet"
+                    android:textColor="#ffffffff"
+                    android:textSize="28sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:layout_margin="10sp"
+            android:id="@+id/InchPanel">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/InchRow1">// first row of inches buttons
+
+                <Button
+                    android:id="@+id/I1"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="1"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I2"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="2"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I3"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="3"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/InchRow2">// second row of Inches buttons
+
+                <Button
+                    android:id="@+id/I4"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="4"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I5"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="5"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I6"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="6"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/InchRow3">// third row of Inches buttons
+
+                <Button
+                    android:id="@+id/I7"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="7"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I8"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="8"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/I9"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="0sp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="9"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:id="@+id/InchRow4">// fourth row of Inches buttons
+
+                <Button
+                    android:id="@+id/I0"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/button"
+                    android:onClick="ClickedInches"
+                    android:padding="0sp"
+                    android:text="0"
+                    android:textColor="#ffffffff"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/InchText"
+                    android:layout_width="0sp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:background="#00000000"
+                    android:padding="0sp"
+                    android:text="Inches"
+                    android:textColor="#ffffffff"
+                    android:textSize="28sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        //This is the end of the inches panels
+
+
+    </LinearLayout>
+    This is the feet and inches panels and takes up the left half
+
+    <LinearLayout
+        android:layout_width="0sp"
+        android:id="@+id/FractionColumn"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_weight="20"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp">
+
+        <!--  Fractions -->
+
+        <Button
+            android:id="@+id/Frac0"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button"
+            android:onClick="ResetFrac"
+            android:text="0"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="20sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac1"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="1/8"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac2"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="1/4"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac3"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="3/8"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac4"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="1/2"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac5"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="5/8"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac6"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="3/4"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:id="@+id/Frac7"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+
+            android:background="@drawable/button"
+            android:onClick="ClickedFrac"
+            android:text="7/8"
+            android:layout_weight="5"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_weight="30"
+        android:layout_margin="10sp"
+        android:id="@+id/OperationButtons">
+
+        <!-- equals -->
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button"
+            android:focusable="false"
+            android:onClick="add"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="24sp"
+            android:layout_weight="5" />
+
+        <Button
+            android:id="@+id/subtract"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/button"
+            android:onClick="subtract"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="24sp"
+            android:layout_weight="5" />
+
+        <Button
+            android:id="@+id/Equals"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/button"
+            android:onClick="ClickedEquals"
+            android:text="="
+            android:textColor="#ffffffff"
+            android:textSize="24sp"
+            android:layout_weight="5" />
+
+        <Button
+            android:id="@+id/History"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/button"
+            android:onClick="ShowHistory"
+            android:text="History"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            android:layout_weight="5" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/button"
+            android:onClick="TotalReset"
+            android:text="Reset"
+            android:textColor="#ffffffff"
+            android:layout_weight="5"
+            android:textSize="15sp"
+            android:alpha=".7" />
+        //Total Reset
+    </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>
+    Bottom 3/4 of application
+
+    //top bars
+
+
+</LinearLayout>
