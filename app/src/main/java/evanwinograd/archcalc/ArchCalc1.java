@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -15,14 +16,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.os.Vibrator;
+
+import org.apache.http.message.BasicNameValuePair;
 
 public class ArchCalc1 extends Activity implements OnItemSelectedListener {
 
     String Operation;
     String Steps;
+    String Steps1;
+    String Steps2;
     int FinalTotalInches;
     int TempTotalInches;
     int TempEighths;
@@ -45,6 +51,7 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
     int EvenOdd;
     String LastTotal;
     String TempSteps;
+    int NumOfSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,10 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
         setContentView(R.layout.activity_arch_calc1);
         FinalTotalInches = 0;
         Steps = "";
+        Steps1 = "Steps";
+        Steps2 = "Total";
         EvenOdd = 0;
+        NumOfSteps = 0;
         TempTotalInches = 0;
         TempEighths = 0;
         FinalEighths = 0;
@@ -60,7 +70,9 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
         LastTotal = "";
         TotalReset(null);
         add(null);
-        ((TextView) findViewById(R.id.StepText)).setText(Steps);
+        //((TextView) findViewById(R.id.StepText)).setText(Steps);
+        ((TextView) findViewById(R.id.StepText)).setText(Steps1);
+        ((TextView) findViewById(R.id.StepTextFinal)).setText(Steps2);
         FillTotalSpinner();
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -349,7 +361,13 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
 
     public void updateHistory() {
         Steps = Steps + "\n" + TempSteps + "      Total: " + LastTotal;
-        ((TextView) findViewById(R.id.StepText)).setText(Steps.toString());
+        Steps1 = Steps1 + "\n" + TempSteps;
+        Steps2 = Steps2 + "\n" + LastTotal;
+
+
+     //   ((TextView) findViewById(R.id.StepText)).setText(Steps.toString());
+        ((TextView) findViewById(R.id.StepText)).setText(Steps1.toString());
+        ((TextView) findViewById(R.id.StepTextFinal)).setText(Steps2.toString());
     }
 
     public String ReduceFrac(int num8s) {
@@ -409,6 +427,8 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
         ((TextView) findViewById(R.id.FinalSign)).setText("");
         ((TextView) findViewById(R.id.InchSummary)).setText("(0" + "\"" + ")");
         Steps="";
+        Steps1="Steps" + "\n";
+        Steps2="Total" + "\n0\' 0\"";
 
     }
 
@@ -456,6 +476,25 @@ public class ArchCalc1 extends Activity implements OnItemSelectedListener {
         GetInches = (Eighths - 96 * GetFeet) / 8;
         GetEighths = (Eighths - GetFeet * 96 - GetInches * 8);
 
+
+    }
+
+    public String EighthsToString(boolean ShowPlus, String TempOrFinal) {
+        if (TempOrFinal == "Final") {
+            BreakDown2(TotalF8);
+        } else {
+            BreakDown2(TotalT8);
+        }
+
+        String Sign = "";
+        if (GetFeet+GetInches+GetEighths >= 0){
+            if (ShowPlus == true) {
+                Sign = "+";
+            }
+        } else {
+            Sign = "-";
+        }
+      return Sign + Integer.toString(GetFeet) + "\' " + Integer.toString(GetInches) + " " + ReduceFrac(GetEighths)  + "\" ";
 
     }
 
