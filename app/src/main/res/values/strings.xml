@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ArchCalc</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="First_Inch_Row">5</string>
+    <string name="Second_Inch_Row">6</string>
+    <string name="Third_Inch_Row">7</string>
+    <string name="Fourth_Inch_Row">8</string>
+    <string name="First_Foot_Row">1</string>
+    <string name="Second_Foot_Row">2</string>
+    <string name="Third_Foot_Row">3</string>
+    <string name="Fourth_Foot_Row">4</string>
+    <string name="Col1">0</string>
+    <string name="Col2">1</string>
+    <string name="Col3">2</string>
+    <string name="Col4">3</string>
+    <string name="Col5">4</string>
+    <string name="Col6">5</string>
+    <string name="action_help">Help</string>
+    <string name="action_FAQ">FAQ</string>
+    <string name="Q1">How do I input values?</string>
+    <string name="A1">Use the Feet, Inch, and Fraction pads. If you hit the wrong number, simply clear using the &quot;C&quot;  buttons.  Additionally, the &quot;clear&quot; button on the input line will reset the input line.</string>
+    <string name="Q2">What happens when I hit &quot;+&quot; or &quot;-&quot;?</string>
+    <string name="A2">If the input line is preceded by &quot;+&quot;, the input line will be added to the total. If the input line is preceded by &quot;-&quot;, the input line will be subtracted from the total.  The input line will then reset to 0.</string>
+    <string name="Q3">What else can it do?</string>
+    <string name="A3">Click on the input line or final line to multiply or divide values.</string>
+    <string name="Q4">Can I change operations without adding or subtracting the input line?</string>
+    <string name="A4">Sorry, pressing &quot;+&quot; or &quot;-&quot; will complete whichever operation is currently selected. Reset the input line before changing signs.</string>
+    <string name="Q5">What comes next?</string>
+    <string name="A5">Future features include: editable history, saving values for future viewing.</string>
+    <string name="Q6">What makes this app different?</string>
+    <string name="A6">Other Feet &amp; Inch calculators require pressing &quot;Feet&quot;, &quot;Inches&quot; &quot;x/&quot; or &quot;/x&quot; after each value. This calculator reduces keystrokes by removing those keys.</string>
+
+    <string-array name="total_spinner_array">
+        <item>x</item>
+        <item>x/2</item>
+        <item>x/3</item>
+        <item>x/4</item>
+        <item>2x</item>
+        <item>3x</item>
+        <item>4x</item>
+    </string-array>
+</resources>
